@@ -53,6 +53,10 @@ call plug#end()
 let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
 nnoremap <Leader>[ :bprevious<CR>
 nnoremap <Leader>] :bnext<CR>
+inoremap <Leader>s <Esc>:w<CR> 
+nnoremap <Leader>s <Esc>:w<CR>
+
+" inoremap <c-s> <c-o>:Update<CR>
 
 colorscheme gruvbox
 let g:gruvbox_termcolors=16
