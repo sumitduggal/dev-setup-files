@@ -1,5 +1,5 @@
 " Ben award vimrc
-" https://gist.github.com/benawad/b768f5a5bbd92c8baabd363b7e79786f
+" https://gist.github.com/benawad/b769f5a5bbd92c8baabd363b7e79786f
 
 " Specify a directory for plugins
 :set autoindent
