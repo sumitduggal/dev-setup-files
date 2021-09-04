@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/sumit.duggal/workplace/search-ui'
+let g:netrw_dirhist_4='/Users/sumit.duggal/workplace/search-ui/src/hooks/useSearch'
+let g:netrw_dirhist_3='/Users/sumit.duggal/workplace/search-ui'
+let g:netrw_dirhist_2='/Users/sumit.duggal/workplace/web-components'
+let g:netrw_dirhist_1='/Users/sumit.duggal/workplace/web-components/src'
+let g:netrw_dirhist_0='/Users/sumit.duggal/workplace/web-components'
+let g:netrw_dirhist_9='/Users/sumit.duggal/workplace/redis-uni/redis-for-js'
+let g:netrw_dirhist_8='/Users/sumit.duggal/.bash_sessions'
+let g:netrw_dirhist_7='/Users/sumit.duggal/workplace/next-route-test/pages'
+let g:netrw_dirhist_6='/Users/sumit.duggal/workplace/next-route-test'
