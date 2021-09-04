@@ -3,26 +3,38 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-# robbyrussell
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -43,20 +55,24 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.nvm/nvm.sh
+source ~/.z.sh
 
 # User configuration
 
@@ -75,9 +91,6 @@ source $HOME/.nvm/nvm.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -86,78 +99,37 @@ source $HOME/.nvm/nvm.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source $HOME/.profile
 
-alias cl="clear"
+# alias 
+alias vi="nvim"
+export EDITOR='nvim'
+export AWS_DEFAULT_REGION="ap-southeast-2"
+
+alias aws-auth="bash ~/bin/aws-auth.sh"
+alias set-oua-tools="export AWS_PROFILE=\"OUA Tools\""
+alias get-code-auth-token="export CODEARTIFACT_AUTH_TOKEN=\`aws codeartifact get-authorization-token --domain oua --domain-owner 412603760344 --query authorizationToken --output text --region ap-southeast-2\`"
+alias set-code="get-code-auth-token"
 
 # git alias
 alias gtl="git tag -l"
 alias git-clean="git branch | grep -v '^*' | xargs git branch -D"
-
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export GEM_HOME=$HOME/gems
-export PATH=$HOME/gems/bin:$PATH
-export ANDROID_HOME=~/Library/Android/sdk
-export ANDROID_SDK_ROOT=~/Library/Android/sdk
-export PATH=$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$PATH
-export PATH=$PATH:/Users/sumitd/Library/Android/sdk/platform-tools
-
-# export PATH=/Users/sumitd/Library/Python/2.7/bin:$PATH
-export PATH=/usr/bin/pythonexport PATH=~/Library/Android/sdk/platform-tools:/Users/sumitd/.nvm/versions/node/v11.0.0/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-
-# lsof
-export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-
-# starship : prompt for any shell!
-eval "$(starship init zsh)"
-
-# opam configuration
-# test -r /Users/sumitd/.opam/opam-init/init.zsh && . /Users/sumitd/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-# ruby
-export PATH=~/.rbenv/shims:/usr/bin/env:/usr/local/bin:/usr/bin:/bin
-
-# android
-export PATH=~/Library/Android/sdk/tools:$PATH
-export PATH=~/Library/Android/sdk/platform-tools:$PATH
-
-export PATH=/usr/local/go/bin:$PATH
-
-# ide
-export REACT_EDITOR=webStorm
-export EDITOR=webStorm
-
-# node
-# . ~/.nvm/nvm.sh
-
-# elixir
-export PATH="$PATH:/path/to/elixir/bin"
-
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
 alias dc="docker container"
 alias dn="docker network"
 alias di="docker image"
 alias dv="docker volume"
 
+source $HOME/.profile
+
+alias set-dd-api="AWS_PROFILE=\"OUA Development - Alchemy\" export DATADOG_SEARCHNEXT_API_KEY=$(aws ssm get-parameter --name "/search-next/stg/datadog-api-key" --query "Parameter.{Value:Value}" --with-decryption --output text)"
+alias cdk-deploy="AWS_PROFILE=\"OUA Development - Alchemy\" npx cdk deploy"
+alias cdk-synth="AWS_PROFILE=\"OUA Development - Alchemy\" npx cdk synth"
+
+
+# . /Users/sumit.duggal/.nix-profile/etc/profile.d/nix.sh
+
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# Starship: prompt for any shell
+eval "$(starship init zsh)"
